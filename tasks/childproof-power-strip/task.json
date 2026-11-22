@@ -1,5 +1,5 @@
 {
-  "title": "Childproof a free-standing power strip: a safety cap pushed home in each empty outlet, the strip held still, the lamp left plugged in",
+  "title": "Childproof a free-standing power strip: hold it still, push a safety cap into each empty outlet, lamp left plugged in",
   "category": "Societal relatability",
   "keywords": [
     "bimanual",
@@ -15,7 +15,7 @@
   "scoring": "Measured relative to the strip. A cap is home in an outlet when its back face is within 2 mm of the strip's face (10 of its 12 mm blades in), its centre within 2.5 mm of the outlet's centre and its axis within 5 deg of square to the face; only the three outlets the lamp is not using count. The strip is still where it stood when its base has moved no more than 10 mm from its start and it leans no more than 5 deg. The lamp is still plugged in when its plug is no more than 3 mm out. 1.0 (success): all three caps home, the lamp still plugged in, the strip where it stood, every finger pad of both grippers at least 2 cm from the strip, its plug and every cap, and nothing moving more than 2 mm over the last second, all together for 1 s; this ends the trial. Otherwise, at the end of the run: 0.25 for each cap home in a free outlet, but at most 0.5 if the strip was shoved more than 10 mm or tipped more than 5 deg (or fell over), or the lamp's plug was pulled more than 5 mm out. A cap pushed in without holding the strip leaves the strip tipping back and the cap short of home: 0.",
   "run_limit": "1,800 steps (1.5 minutes at 20 Hz)",
   "reset_notes": "Pull the caps out and stand them back in the tray's slits; stand the strip back on its marks; push the lamp's plug fully back into the bottom outlet with the cord laid as in the screenshot.",
-  "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control. The strip is a free rigid body on rubber feet (friction 0.6). Its slots are real openings into cavities, and each slot's two brass contacts are rigid leaves on sprung slides (1,200 N/m, preloaded so each presses about 4 N on a blade; friction 0.2) with 17 deg lead-in ramps: they grip the blades, hold the caps and plug in, and set the force needed to push a cap home. Real receptacle contacts are bent spring strips, and real caps usually need more force (10 N or more; at that force the strip would also need holding, all the more). The lamp cord is 18 rigid links on soft hinges whose rest shape is the way it lies; the lamp's base is fixed. No electricity.",
+  "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control. Free strip on rubber feet (friction 0.6). Its slots are real openings, each with two rigid brass leaves on sprung slides (1,200 N/m, about 4 N on a blade, friction 0.2, 17 deg lead-ins) that grip the blades and set the push (about 3 N per cap). Real contacts are bent spring strips, and real caps often need 10 N or more. Lamp cord: 18 rigid links on soft hinges; lamp base fixed. No electricity. Details in the README.",
   "scores": "Dream-1 run: 0.0; demo: 1.0",
   "media": "M-XL9GSB"
 }
