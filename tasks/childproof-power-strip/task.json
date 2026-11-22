@@ -1,0 +1,21 @@
+{
+  "title": "Childproof a free-standing power strip: a safety cap pushed home in each empty outlet, the strip held still, the lamp left plugged in",
+  "category": "Societal relatability",
+  "keywords": [
+    "bimanual",
+    "childproofing",
+    "outlet caps",
+    "bracing",
+    "insertion",
+    "plug in use"
+  ],
+  "instruction": "Childproof the power strip: put a safety cap into every outlet that is not in use, then let go.",
+  "context": "Parents fit plastic safety caps into the unused outlets of a power strip within a toddler's reach. A tower strip is light and stands free, and a cap only goes home against the outlet's contact springs, so one hand holds the strip while the other pushes each cap in; the outlet the lamp uses is left alone.",
+  "setup": "Positions in cm from the midpoint between the arm bases: x forward, y to the robot's left; heights above the table top. Power strip: a white ABS tower 6 (x) x 6 (y) x 30 cm tall, 0.5 kg, standing free on four 3 mm rubber feet, centred at (43, -6), its front face (x = 40) toward the robot, a red rocker switch on top and its own cord leaving the back. On the front face, four NEMA 5-15 outlets (ivory 3 x 3.6 cm faces, a round ground hole each) centred 6.5, 12, 17.5 and 23 cm above the table; each outlet has two 3.5 x 9 mm slots 12.7 mm apart, 19 mm deep, and in every slot a pair of sprung brass contacts that grip a 1.5 mm blade from both sides (about 3 N to push a two-blade cap fully in). Desk lamp: blue round base 11 cm across at (66, 15), stem and cream shade; its black 3.5 mm cord (about 53 cm) runs across the table in front of the strip to a black two-blade plug (2.6 x 2.2 x 3.4 cm, 30 g), which is pushed fully into the bottom outlet. Cap tray: dark grey foam 7 x 17 x 2 cm at (26, -21.5); three child-safety outlet caps stand in its slits, blades down and grip ridge up, at y = -27, -21.5 and -16. Each cap: white plastic, 6 g, a round face 38 mm across and 3 mm thick, a grip ridge 24 x 6 mm standing 14 mm off its front, and two flat blades 12 mm long, 6.3 mm wide and 1.5 mm thick, 12.7 mm apart, with chamfered tips. Both arms start at the ready pose with open grippers. Nothing else is on the table.",
+  "scoring": "Measured relative to the strip. A cap is home in an outlet when its back face is within 2 mm of the strip's face (10 of its 12 mm blades in), its centre within 2.5 mm of the outlet's centre and its axis within 5 deg of square to the face; only the three outlets the lamp is not using count. The strip is still where it stood when its base has moved no more than 10 mm from its start and it leans no more than 5 deg. The lamp is still plugged in when its plug is no more than 3 mm out. 1.0 (success): all three caps home, the lamp still plugged in, the strip where it stood, every finger pad of both grippers at least 2 cm from the strip, its plug and every cap, and nothing moving more than 2 mm over the last second, all together for 1 s; this ends the trial. Otherwise, at the end of the run: 0.25 for each cap home in a free outlet, but at most 0.5 if the strip was shoved more than 10 mm or tipped more than 5 deg (or fell over), or the lamp's plug was pulled more than 5 mm out. A cap pushed in without holding the strip leaves the strip tipping back and the cap short of home: 0.",
+  "run_limit": "1,800 steps (1.5 minutes at 20 Hz)",
+  "reset_notes": "Pull the caps out and stand them back in the tray's slits; stand the strip back on its marks; push the lamp's plug fully back into the bottom outlet with the cord laid as in the screenshot.",
+  "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control. The strip is a free rigid body on rubber feet (friction 0.6). Its slots are real openings into cavities, and each slot's two brass contacts are rigid leaves on sprung slides (1,200 N/m, preloaded so each presses about 4 N on a blade; friction 0.2) with 17 deg lead-in ramps: they grip the blades, hold the caps and plug in, and set the force needed to push a cap home. Real receptacle contacts are bent spring strips, and real caps usually need more force (10 N or more; at that force the strip would also need holding, all the more). The lamp cord is 18 rigid links on soft hinges whose rest shape is the way it lies; the lamp's base is fixed. No electricity.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-XL9GSB"
+}

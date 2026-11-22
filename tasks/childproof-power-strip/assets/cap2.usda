@@ -1,0 +1,125 @@
+#usda 1.0
+(
+    defaultPrim = "cap2"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "cap2"
+{
+    def "Looks"
+    {
+        def Material "plastic"
+        {
+            token outputs:surface.connect = </cap2/Looks/plastic/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.92, 0.92, 0.94)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "body" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        float physics:mass = 0.006
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cylinder "face" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            uniform token axis = "X"
+            double height = 0.003
+            rel material:binding = </cap2/Looks/plastic>
+            custom float physxCollision:contactOffset = 0.0005
+            custom float physxCollision:restOffset = 0
+            double radius = 0.019
+            double3 xformOp:translate = (-0.0015, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cube "ridge" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI"]
+        )
+        {
+            rel material:binding = </cap2/Looks/plastic>
+            custom float physxCollision:contactOffset = 0.0005
+            custom float physxCollision:minTorsionalPatchRadius = 0.004
+            custom float physxCollision:restOffset = 0
+            custom float physxCollision:torsionalPatchRadius = 0.006
+            double size = 1
+            float3 xformOp:scale = (0.014, 0.024, 0.006)
+            double3 xformOp:translate = (-0.01, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+        }
+
+        def Mesh "blade0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </cap2/Looks/plastic>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0005
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0, -0.0071, -0.00315), (0, -0.0056, -0.00315), (0, -0.0056, 0.00315), (0, -0.0071, 0.00315), (0.009, -0.0071, -0.00315), (0.009, -0.0056, -0.00315), (0.009, -0.0056, 0.00315), (0.009, -0.0071, 0.00315)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "tip0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </cap2/Looks/plastic>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0005
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.009, -0.0071, -0.00315), (0.009, -0.0056, -0.00315), (0.009, -0.0056, 0.00315), (0.009, -0.0071, 0.00315), (0.012, -0.00665, -0.00195), (0.012, -0.00605, -0.00195), (0.012, -0.00605, 0.00195), (0.012, -0.00665, 0.00195)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "blade1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </cap2/Looks/plastic>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0005
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0, 0.0056, -0.00315), (0, 0.0071, -0.00315), (0, 0.0071, 0.00315), (0, 0.0056, 0.00315), (0.009, 0.0056, -0.00315), (0.009, 0.0071, -0.00315), (0.009, 0.0071, 0.00315), (0.009, 0.0056, 0.00315)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "tip1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </cap2/Looks/plastic>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0005
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.009, 0.0056, -0.00315), (0.009, 0.0071, -0.00315), (0.009, 0.0071, 0.00315), (0.009, 0.0056, 0.00315), (0.012, 0.00605, -0.00195), (0.012, 0.00665, -0.00195), (0.012, 0.00665, 0.00195), (0.012, 0.00605, 0.00195)]
+            uniform token subdivisionScheme = "none"
+        }
+    }
+}
+
