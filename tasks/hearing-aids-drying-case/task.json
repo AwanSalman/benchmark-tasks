@@ -1,0 +1,21 @@
+{
+  "title": "Hold each 3 g hearing aid while the other hand swings its battery door open, then lay both in the drying case overnight",
+  "category": "Societal relatability",
+  "keywords": [
+    "bimanual",
+    "hearing aid",
+    "battery door",
+    "detent",
+    "small parts",
+    "drying case"
+  ],
+  "instruction": "Open the battery door on each hearing aid, then lay both aids in the drying case for the night, doors open.",
+  "context": "Hearing-aid users put their aids in a drying case every night, and the makers' instructions say to open each battery door first, so the zinc-air cell stops draining and moisture can get out. The aid weighs 3 g and its door is a 10 mm flap that clicks shut: pulled by its nail lip, an aid that nothing holds just slides or turns, so one hand holds the aid while the other swings the door open past its click.",
+  "setup": "Positions in cm from the midpoint between the arm bases: x forward, y to the robot's left; heights above the table top. Two identical behind-the-ear hearing aids lie on their sides with their battery doors shut: each a beige plastic shell 4.0 cm long, 1.2 cm from back to front and 0.9 cm thick (3 g with its cell), a clear grey ear hook (3.6 mm tube) curving about 1.6 cm off its top end and a dark grey logo dot on each side near the top. The battery door is the shell's bottom 1.0 cm, hinged on a pin across the shell at the bottom end's front corner; a nail lip (1.5 mm thick, 7 mm tall, standing 8 mm out) stands on the bottom end at the back. The door clicks shut within 12 deg of shut, otherwise stays where it is put, and opens to 105 deg; a size 13 cell sits in it. Each aid lies with its bottom end toward the robot's right (-y), its back away from the robot and its hook curving toward the robot: one with its bottom end's centre at (36, 3), the other at (24, 3). Drying case: a white plastic box 10.4 (x) x 8.5 (y) x 2.2 cm, 300 g, centred at (30, 15.5), its lid (smoked grey) hinged along the back top edge and standing open at 100 deg; its top holds an open tray 9.2 (x) x 7.4 (y) cm and 8 mm deep with a grey floor, centred in the box. Both arms start at the ready pose with open grippers. Nothing else is on the table.",
+  "scoring": "A door is open at 60 deg or more. An aid lies in the case when its centre (2 cm up the shell from the bottom end) is at least 4 mm inside the tray's walls, it rests on the tray's floor (its centre at most 3 mm above lying flat) and it is within 20 deg of lying on its side. 1.0 (success): both aids in the case with their doors open, every finger pad of both grippers at least 2 cm from both aids, and nothing moving more than 2 mm over the last second, together for 1 s; this ends the trial. Otherwise, at the end of the run, for each aid: 0.25 if its door is open, and 0.25 more if it also lies in the case; at most 0.75. An aid laid in the case with its door shut scores nothing.",
+  "run_limit": "1,600 steps (80 seconds at 20 Hz)",
+  "reset_notes": "Close both battery doors (click them shut) and lay the aids back on their marks; stand the case on its marks with its lid open against its stop.",
+  "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control. Each aid is a free two-part articulation: shell (convex pieces, hook as capsules) and battery door on a hinge. The door's click is a spring pulling it shut within 12 deg (about 0.5 N at the lip); beyond that it stays put, like a real door pin's friction. The nail lip stands 8 mm out so the 15 mm-wide fingertips can take it; real lips stand 1-2 mm out and are opened with a fingernail. Case rigid, lid fixed open; cell not modelled.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-RK824H"
+}
