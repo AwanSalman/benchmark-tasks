@@ -1,0 +1,21 @@
+{
+  "title": "Shell two peanuts: one hand holds each pod, the other bends it till it cracks; nuts in the bowl, shells on a saucer",
+  "category": "Societal relatability",
+  "keywords": [
+    "bimanual",
+    "peanuts",
+    "shelling",
+    "cracking",
+    "food",
+    "snack"
+  ],
+  "instruction": "Shell the two peanuts: the nuts in the white bowl, the shells on the blue saucer.",
+  "context": "Shelling peanuts by hand is a familiar snack-time job. A pod is cracked by bending it at its waist, which takes both hands: one holds the pod, the other bends the far half. The shell then comes apart in two halves with a nut loose in each, which has to be tipped out over the bowl without dropping it or mixing shells in with the nuts.",
+  "setup": "Positions in cm from the midpoint between the arm bases: x forward, y to the robot's left; heights above the table top. Two roasted, unsalted in-shell Virginia-type peanuts (two-kernel pods, chosen as in the README) lie on the bare wooden table along y, each 4.0 cm long, 1.5 cm across at its lobes and 1.24 cm at its pinched waist, with a 1.2 mm tan shell (0.8 g a pod) cracked nowhere yet, and a loose kernel 1.15 cm long and 0.9 cm across (0.6 g, red-brown skin) inside each half; their waists at (25, 16) and (35, 16). A white glazed stoneware snack bowl, 12 cm across, 5 cm tall, 4 mm wall, 250 g, stands centred at (30, 0). A blue ceramic saucer, 10 cm across, 1.8 cm deep, 150 g, stands centred at (18, -3). Both arms start at the ready pose with open grippers. Nothing else is on the table.",
+  "scoring": "A pod has cracked once its two halves have separated at the waist. A kernel counts when it rests inside the bowl's walls and below its rim and is not inside a shell half. A shell half counts when its middle rests on the saucer, inside its rim. 1.0 (success): all four kernels in the bowl, all four shell halves on the saucer, no shell piece in the bowl, every finger pad at least 3 cm from every nut and shell piece, and nothing moving more than 2 mm over the last second, together for 1 s; this ends the trial. Otherwise, at the end: 0.15 for each kernel in the bowl plus 0.075 for each shell half on the saucer; at most 0.5 if any shell piece is in the bowl or the bowl was moved 3 cm or tipped 20 deg; at most 0.9. A whole, uncracked peanut in the bowl earns nothing. Real trial: shell pieces under 5 mm and loose skin are ignored; if a pod splits into more than two pieces, its halves count as on the saucer only if all its pieces of 5 mm or more are, and any such piece in the bowl caps the score at 0.5; a broken kernel counts only if all its pieces of 5 mm or more are in the bowl.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "reset_notes": "Peanuts are used up: lay two fresh pods on their marks for each trial, from one sealed bag kept dry and used within a week of opening. Use pods with two lobes and a visible waist, 3.8 to 4.5 cm long, 1.3 to 1.7 cm across, that rattle when shaken; reject any cracked, holed or soft pod. Before a session, bend five spare pods from the bag at the waist by hand: use the bag only if at least four crack there into two main pieces with loose kernels. If a cracked pod turns out to have held fewer than two kernels, the trial is void and rerun. Empty the bowl and the saucer and stand them back on their marks.",
+  "fidelity": "Rigid bodies, 240 Hz physics, 20 Hz control. Each pod is two hollow shell halves (convex pieces; the pinched waist is drawn, but they collide as straight tubes) held at the waist by a joint the task releases once the pod is bent 3 deg or pulled 0.8 mm apart there: the crack. Real pods crack along uneven lines and shed bits; here each splits into the same two halves. Kernel skins left out (kernel-on-shell friction 0.3). Bowl and saucer rigid, loose.",
+  "scores": "Dream-1 run: 0.0 (2,400 steps); demo: 1.0 (1,295 steps). The demo also reached 1.0 with the crack threshold halved or doubled, with stickier nuts, and with pods 3.8 and 4.4 cm long. Both peanuts put in the bowl uncracked: 0.0; shelled but the shells dropped in the bowl too: 0.5.",
+  "media": "M-YKMG6K"
+}
