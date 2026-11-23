@@ -1,0 +1,484 @@
+#usda 1.0
+(
+    defaultPrim = "spring"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "spring"
+{
+    def "Looks"
+    {
+        def Material "steel"
+        {
+            token outputs:surface.connect = </spring/Looks/steel/surface.outputs:surface>
+
+            def Shader "surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.72, 0.73, 0.75)
+                float inputs:metallic = 1
+                float inputs:roughness = 0.25
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "body" (
+        prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
+    )
+    {
+        float physics:mass = 0.0005
+
+        def Mesh "slat0_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, 0.0023, 0), (-0.006, 0.0025, 0), (-0.006, 0.0020225425, 0.0014694631), (-0.006, 0.0018607391, 0.0013519061), (-0.0055, 0.002, 0), (-0.0055, 0.0025, 0), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.001618034, 0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat0_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, 0.002, 0), (-0.0055, 0.0025, 0), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.001618034, 0.0011755705), (0.0055, 0.002, 0), (0.0055, 0.0025, 0), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.001618034, 0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat0_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, 0.002, 0), (0.0055, 0.0025, 0), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.001618034, 0.0011755705), (0.006, 0.0023, 0), (0.006, 0.0025, 0), (0.006, 0.0020225425, 0.0014694631), (0.006, 0.0018607391, 0.0013519061)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat1_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, 0.0018607391, 0.0013519061), (-0.006, 0.0020225425, 0.0014694631), (-0.006, 0.0007725425, 0.0023776414), (-0.006, 0.0007107391, 0.00218743), (-0.0055, 0.001618034, 0.0011755705), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, 0.000618034, 0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat1_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, 0.001618034, 0.0011755705), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, 0.000618034, 0.0019021131), (0.0055, 0.001618034, 0.0011755705), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.0007725425, 0.0023776414), (0.0055, 0.000618034, 0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat1_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, 0.001618034, 0.0011755705), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.0007725425, 0.0023776414), (0.0055, 0.000618034, 0.0019021131), (0.006, 0.0018607391, 0.0013519061), (0.006, 0.0020225425, 0.0014694631), (0.006, 0.0007725425, 0.0023776414), (0.006, 0.0007107391, 0.00218743)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat2_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, 0.0007107391, 0.00218743), (-0.006, 0.0007725425, 0.0023776414), (-0.006, -0.0007725425, 0.0023776414), (-0.006, -0.0007107391, 0.00218743), (-0.0055, 0.000618034, 0.0019021131), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.000618034, 0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat2_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, 0.000618034, 0.0019021131), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.000618034, 0.0019021131), (0.0055, 0.000618034, 0.0019021131), (0.0055, 0.0007725425, 0.0023776414), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.000618034, 0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat2_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, 0.000618034, 0.0019021131), (0.0055, 0.0007725425, 0.0023776414), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.000618034, 0.0019021131), (0.006, 0.0007107391, 0.00218743), (0.006, 0.0007725425, 0.0023776414), (0.006, -0.0007725425, 0.0023776414), (0.006, -0.0007107391, 0.00218743)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat3_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, -0.0007107391, 0.00218743), (-0.006, -0.0007725425, 0.0023776414), (-0.006, -0.0020225425, 0.0014694631), (-0.006, -0.0018607391, 0.0013519061), (-0.0055, -0.000618034, 0.0019021131), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.001618034, 0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat3_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, -0.000618034, 0.0019021131), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.001618034, 0.0011755705), (0.0055, -0.000618034, 0.0019021131), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.001618034, 0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat3_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, -0.000618034, 0.0019021131), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.001618034, 0.0011755705), (0.006, -0.0007107391, 0.00218743), (0.006, -0.0007725425, 0.0023776414), (0.006, -0.0020225425, 0.0014694631), (0.006, -0.0018607391, 0.0013519061)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat4_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, -0.0018607391, 0.0013519061), (-0.006, -0.0020225425, 0.0014694631), (-0.006, -0.0025, 3.061617e-19), (-0.006, -0.0023, 2.8166878e-19), (-0.0055, -0.001618034, 0.0011755705), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.002, 2.4492937e-19)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat4_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, -0.001618034, 0.0011755705), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.002, 2.4492937e-19), (0.0055, -0.001618034, 0.0011755705), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.002, 2.4492937e-19)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat4_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, -0.001618034, 0.0011755705), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.002, 2.4492937e-19), (0.006, -0.0018607391, 0.0013519061), (0.006, -0.0020225425, 0.0014694631), (0.006, -0.0025, 3.061617e-19), (0.006, -0.0023, 2.8166878e-19)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat5_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, -0.0023, 2.8166878e-19), (-0.006, -0.0025, 3.061617e-19), (-0.006, -0.0020225425, -0.0014694631), (-0.006, -0.0018607391, -0.0013519061), (-0.0055, -0.002, 2.4492937e-19), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.001618034, -0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat5_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, -0.002, 2.4492937e-19), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.001618034, -0.0011755705), (0.0055, -0.002, 2.4492937e-19), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.001618034, -0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat5_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, -0.002, 2.4492937e-19), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.001618034, -0.0011755705), (0.006, -0.0023, 2.8166878e-19), (0.006, -0.0025, 3.061617e-19), (0.006, -0.0020225425, -0.0014694631), (0.006, -0.0018607391, -0.0013519061)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat6_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, -0.0018607391, -0.0013519061), (-0.006, -0.0020225425, -0.0014694631), (-0.006, -0.0007725425, -0.0023776414), (-0.006, -0.0007107391, -0.00218743), (-0.0055, -0.001618034, -0.0011755705), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, -0.000618034, -0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat6_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, -0.001618034, -0.0011755705), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, -0.000618034, -0.0019021131), (0.0055, -0.001618034, -0.0011755705), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.0007725425, -0.0023776414), (0.0055, -0.000618034, -0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat6_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, -0.001618034, -0.0011755705), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.0007725425, -0.0023776414), (0.0055, -0.000618034, -0.0019021131), (0.006, -0.0018607391, -0.0013519061), (0.006, -0.0020225425, -0.0014694631), (0.006, -0.0007725425, -0.0023776414), (0.006, -0.0007107391, -0.00218743)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat7_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, -0.0007107391, -0.00218743), (-0.006, -0.0007725425, -0.0023776414), (-0.006, 0.0007725425, -0.0023776414), (-0.006, 0.0007107391, -0.00218743), (-0.0055, -0.000618034, -0.0019021131), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.000618034, -0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat7_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, -0.000618034, -0.0019021131), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.000618034, -0.0019021131), (0.0055, -0.000618034, -0.0019021131), (0.0055, -0.0007725425, -0.0023776414), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.000618034, -0.0019021131)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat7_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, -0.000618034, -0.0019021131), (0.0055, -0.0007725425, -0.0023776414), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.000618034, -0.0019021131), (0.006, -0.0007107391, -0.00218743), (0.006, -0.0007725425, -0.0023776414), (0.006, 0.0007725425, -0.0023776414), (0.006, 0.0007107391, -0.00218743)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat8_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, 0.0007107391, -0.00218743), (-0.006, 0.0007725425, -0.0023776414), (-0.006, 0.0020225425, -0.0014694631), (-0.006, 0.0018607391, -0.0013519061), (-0.0055, 0.000618034, -0.0019021131), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.001618034, -0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat8_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, 0.000618034, -0.0019021131), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.001618034, -0.0011755705), (0.0055, 0.000618034, -0.0019021131), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.001618034, -0.0011755705)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat8_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, 0.000618034, -0.0019021131), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.001618034, -0.0011755705), (0.006, 0.0007107391, -0.00218743), (0.006, 0.0007725425, -0.0023776414), (0.006, 0.0020225425, -0.0014694631), (0.006, 0.0018607391, -0.0013519061)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat9_0" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.006, 0.0018607391, -0.0013519061), (-0.006, 0.0020225425, -0.0014694631), (-0.006, 0.0025, -6.123234e-19), (-0.006, 0.0023, -5.6333755e-19), (-0.0055, 0.001618034, -0.0011755705), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.0025, -6.123234e-19), (-0.0055, 0.002, -4.8985874e-19)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat9_1" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(-0.0055, 0.001618034, -0.0011755705), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.0025, -6.123234e-19), (-0.0055, 0.002, -4.8985874e-19), (0.0055, 0.001618034, -0.0011755705), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.0025, -6.123234e-19), (0.0055, 0.002, -4.8985874e-19)]
+            uniform token subdivisionScheme = "none"
+        }
+
+        def Mesh "slat9_2" (
+            prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            rel material:binding = </spring/Looks/steel>
+            uniform token physics:approximation = "convexHull"
+            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:restOffset = 0
+            point3f[] points = [(0.0055, 0.001618034, -0.0011755705), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.0025, -6.123234e-19), (0.0055, 0.002, -4.8985874e-19), (0.006, 0.0018607391, -0.0013519061), (0.006, 0.0020225425, -0.0014694631), (0.006, 0.0025, -6.123234e-19), (0.006, 0.0023, -5.6333755e-19)]
+            uniform token subdivisionScheme = "none"
+        }
+    }
+}
+
