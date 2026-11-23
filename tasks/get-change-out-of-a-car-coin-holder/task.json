@@ -1,0 +1,21 @@
+{
+  "title": "Get 40 cents out of a car coin holder: slide a quarter, a dime and a nickel out from under their spring-loaded lips",
+  "category": "Societal relatability",
+  "keywords": [
+    "coins",
+    "coin holder",
+    "counting",
+    "sliding",
+    "spring-loaded",
+    "car"
+  ],
+  "instruction": "Take 40 cents out of the coin holder into the tray.",
+  "context": "Car coin holders keep change for tolls and parking meters. A spring pushes each tube's stack up under a lip, so a coin comes out only by pressing on it and sliding it out sideways, as owners do with a thumb. With these coins, exactly 40 cents takes a quarter, a dime and a nickel, so the hand must read the tubes by coin size and colour, take one coin from each of three, and stop.",
+  "setup": "Millimetres from the midpoint between the arm bases: x forward, y to the robot's left, heights above the bench top. A light grey plastic tray (170 mm across, 8 mm wall, 150 g) lies centred at (300, 0). In it stands a black ABS car coin holder (as listed for the Seven Sparta A-1231: 76.2 mm across, 101.6 mm tall, 175 g, rubber base), axis at (300, 0). Its four spring-loaded tubes, centres at quarter (285, -13.5), dime (285, 13.5), nickel (315, 13.5), penny (315, -13.5), hold 4 quarters, 2 dimes, 2 nickels and 2 copper pennies (US Mint sizes and masses), each stack pushed up against a 1.5 mm top plate whose lip overhangs the coin's rim by 1.6 mm, with an opening on top and a slot running outward from the holder's axis to its edge. Lip, slot and spring figures are estimates from product photos and owners' reviews. Frictions: coin 0.25, holder base 0.6, tray 0.5. The bench is the station's flat wooden table top. Both arms start at their ready pose, grippers open. Nothing else is on the bench.",
+  "scoring": "Judged from the state at each moment, and only while both hands' tool points are at least 4 cm from every coin out of its tube and those coins are still (under 1 cm/s); otherwise 0. 1.0: exactly 40 cents in the tray. Over 40 cents: 0.25. The job is to count out exactly 40 cents: taking extra coins is a counting error, and the change left in the holder is what the next toll needs. Under 40 cents: 0.25 for each of the quarter, dime and nickel in the tray. Any coin on the bench (off both tray and holder): at most 0.5. 0 if the holder ever tipped past 20 degrees. Real trial: once the hands are away and nothing moves, count the coins in the tray. The run ends with success once 1.0 has held for 1 s.",
+  "run_limit": "1,200 steps (60 s at 20 Hz), about 1.6 times the 745-step demo",
+  "reset_notes": "Nothing is random. Press each coin back into its tube from above; the holder and tray stay at their marks. About 30 seconds (estimate); nothing is consumed.",
+  "fidelity": "Rigid bodies (PhysX convex hulls, 240 Hz). Holder size and mass as listed; coins at US Mint sizes and masses, as 32-sided prisms. Lips, slots, exit channels, springs (0.8 N on a full stack), tray and frictions are estimates from product photos and owners' reviews; each tube holds 2 to 4 coins, fewer than a full holder. Solver partitions are raised to 32 for the many coin contacts. The demo reads object poses; a policy sees only the cameras.",
+  "scores": "Dream-1 run: 0.0 (1,200 steps; the hands never reached the holder); demo: 1.0 (745 steps). Overpaying with a second dime (50 cents): 0.25; a dime and a quarter only (35 cents): 0.5.",
+  "media": "M-22XMAQ"
+}
