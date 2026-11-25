@@ -28,7 +28,7 @@ def Xform "spring"
         prepend apiSchemas = ["PhysicsRigidBodyAPI", "PhysicsMassAPI"]
     )
     {
-        float physics:mass = 0.0005
+        float physics:mass = 0.0004
 
         def Mesh "slat0_0" (
             prepend apiSchemas = ["MaterialBindingAPI", "PhysicsCollisionAPI", "PhysxCollisionAPI", "PhysicsMeshCollisionAPI"]
@@ -39,9 +39,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, 0.0023, 0), (-0.006, 0.0025, 0), (-0.006, 0.0020225425, 0.0014694631), (-0.006, 0.0018607391, 0.0013519061), (-0.0055, 0.002, 0), (-0.0055, 0.0025, 0), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.001618034, 0.0011755705)]
+            point3f[] points = [(-0.015, 0.00255, 0), (-0.015, 0.0026, 0), (-0.015, 0.0021034442, 0.0015282417), (-0.015, 0.0020629934, 0.0014988524), (-0.012, 0.00175, 0), (-0.012, 0.0026, 0), (-0.012, 0.0021034442, 0.0015282417), (-0.012, 0.0014157797, 0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -54,9 +54,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, 0.002, 0), (-0.0055, 0.0025, 0), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.001618034, 0.0011755705), (0.0055, 0.002, 0), (0.0055, 0.0025, 0), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.001618034, 0.0011755705)]
+            point3f[] points = [(-0.012, 0.00175, 0), (-0.012, 0.0026, 0), (-0.012, 0.0021034442, 0.0015282417), (-0.012, 0.0014157797, 0.0010286242), (0.012, 0.00175, 0), (0.012, 0.0026, 0), (0.012, 0.0021034442, 0.0015282417), (0.012, 0.0014157797, 0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -69,9 +69,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, 0.002, 0), (0.0055, 0.0025, 0), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.001618034, 0.0011755705), (0.006, 0.0023, 0), (0.006, 0.0025, 0), (0.006, 0.0020225425, 0.0014694631), (0.006, 0.0018607391, 0.0013519061)]
+            point3f[] points = [(0.012, 0.00175, 0), (0.012, 0.0026, 0), (0.012, 0.0021034442, 0.0015282417), (0.012, 0.0014157797, 0.0010286242), (0.015, 0.00255, 0), (0.015, 0.0026, 0), (0.015, 0.0021034442, 0.0015282417), (0.015, 0.0020629934, 0.0014988524)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -84,9 +84,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, 0.0018607391, 0.0013519061), (-0.006, 0.0020225425, 0.0014694631), (-0.006, 0.0007725425, 0.0023776414), (-0.006, 0.0007107391, 0.00218743), (-0.0055, 0.001618034, 0.0011755705), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, 0.000618034, 0.0019021131)]
+            point3f[] points = [(-0.015, 0.0020629934, 0.0014988524), (-0.015, 0.0021034442, 0.0015282417), (-0.015, 0.0008034442, 0.002472747), (-0.015, 0.0007879933, 0.002425194), (-0.012, 0.0014157797, 0.0010286242), (-0.012, 0.0021034442, 0.0015282417), (-0.012, 0.0008034442, 0.002472747), (-0.012, 0.0005407797, 0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -99,9 +99,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, 0.001618034, 0.0011755705), (-0.0055, 0.0020225425, 0.0014694631), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, 0.000618034, 0.0019021131), (0.0055, 0.001618034, 0.0011755705), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.0007725425, 0.0023776414), (0.0055, 0.000618034, 0.0019021131)]
+            point3f[] points = [(-0.012, 0.0014157797, 0.0010286242), (-0.012, 0.0021034442, 0.0015282417), (-0.012, 0.0008034442, 0.002472747), (-0.012, 0.0005407797, 0.0016643489), (0.012, 0.0014157797, 0.0010286242), (0.012, 0.0021034442, 0.0015282417), (0.012, 0.0008034442, 0.002472747), (0.012, 0.0005407797, 0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -114,9 +114,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, 0.001618034, 0.0011755705), (0.0055, 0.0020225425, 0.0014694631), (0.0055, 0.0007725425, 0.0023776414), (0.0055, 0.000618034, 0.0019021131), (0.006, 0.0018607391, 0.0013519061), (0.006, 0.0020225425, 0.0014694631), (0.006, 0.0007725425, 0.0023776414), (0.006, 0.0007107391, 0.00218743)]
+            point3f[] points = [(0.012, 0.0014157797, 0.0010286242), (0.012, 0.0021034442, 0.0015282417), (0.012, 0.0008034442, 0.002472747), (0.012, 0.0005407797, 0.0016643489), (0.015, 0.0020629934, 0.0014988524), (0.015, 0.0021034442, 0.0015282417), (0.015, 0.0008034442, 0.002472747), (0.015, 0.0007879933, 0.002425194)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -129,9 +129,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, 0.0007107391, 0.00218743), (-0.006, 0.0007725425, 0.0023776414), (-0.006, -0.0007725425, 0.0023776414), (-0.006, -0.0007107391, 0.00218743), (-0.0055, 0.000618034, 0.0019021131), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.000618034, 0.0019021131)]
+            point3f[] points = [(-0.015, 0.0007879933, 0.002425194), (-0.015, 0.0008034442, 0.002472747), (-0.015, -0.0008034442, 0.002472747), (-0.015, -0.0007879933, 0.002425194), (-0.012, 0.0005407797, 0.0016643489), (-0.012, 0.0008034442, 0.002472747), (-0.012, -0.0008034442, 0.002472747), (-0.012, -0.0005407797, 0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -144,9 +144,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, 0.000618034, 0.0019021131), (-0.0055, 0.0007725425, 0.0023776414), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.000618034, 0.0019021131), (0.0055, 0.000618034, 0.0019021131), (0.0055, 0.0007725425, 0.0023776414), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.000618034, 0.0019021131)]
+            point3f[] points = [(-0.012, 0.0005407797, 0.0016643489), (-0.012, 0.0008034442, 0.002472747), (-0.012, -0.0008034442, 0.002472747), (-0.012, -0.0005407797, 0.0016643489), (0.012, 0.0005407797, 0.0016643489), (0.012, 0.0008034442, 0.002472747), (0.012, -0.0008034442, 0.002472747), (0.012, -0.0005407797, 0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -159,9 +159,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, 0.000618034, 0.0019021131), (0.0055, 0.0007725425, 0.0023776414), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.000618034, 0.0019021131), (0.006, 0.0007107391, 0.00218743), (0.006, 0.0007725425, 0.0023776414), (0.006, -0.0007725425, 0.0023776414), (0.006, -0.0007107391, 0.00218743)]
+            point3f[] points = [(0.012, 0.0005407797, 0.0016643489), (0.012, 0.0008034442, 0.002472747), (0.012, -0.0008034442, 0.002472747), (0.012, -0.0005407797, 0.0016643489), (0.015, 0.0007879933, 0.002425194), (0.015, 0.0008034442, 0.002472747), (0.015, -0.0008034442, 0.002472747), (0.015, -0.0007879933, 0.002425194)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -174,9 +174,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, -0.0007107391, 0.00218743), (-0.006, -0.0007725425, 0.0023776414), (-0.006, -0.0020225425, 0.0014694631), (-0.006, -0.0018607391, 0.0013519061), (-0.0055, -0.000618034, 0.0019021131), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.001618034, 0.0011755705)]
+            point3f[] points = [(-0.015, -0.0007879933, 0.002425194), (-0.015, -0.0008034442, 0.002472747), (-0.015, -0.0021034442, 0.0015282417), (-0.015, -0.0020629934, 0.0014988524), (-0.012, -0.0005407797, 0.0016643489), (-0.012, -0.0008034442, 0.002472747), (-0.012, -0.0021034442, 0.0015282417), (-0.012, -0.0014157797, 0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -189,9 +189,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, -0.000618034, 0.0019021131), (-0.0055, -0.0007725425, 0.0023776414), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.001618034, 0.0011755705), (0.0055, -0.000618034, 0.0019021131), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.001618034, 0.0011755705)]
+            point3f[] points = [(-0.012, -0.0005407797, 0.0016643489), (-0.012, -0.0008034442, 0.002472747), (-0.012, -0.0021034442, 0.0015282417), (-0.012, -0.0014157797, 0.0010286242), (0.012, -0.0005407797, 0.0016643489), (0.012, -0.0008034442, 0.002472747), (0.012, -0.0021034442, 0.0015282417), (0.012, -0.0014157797, 0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -204,9 +204,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, -0.000618034, 0.0019021131), (0.0055, -0.0007725425, 0.0023776414), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.001618034, 0.0011755705), (0.006, -0.0007107391, 0.00218743), (0.006, -0.0007725425, 0.0023776414), (0.006, -0.0020225425, 0.0014694631), (0.006, -0.0018607391, 0.0013519061)]
+            point3f[] points = [(0.012, -0.0005407797, 0.0016643489), (0.012, -0.0008034442, 0.002472747), (0.012, -0.0021034442, 0.0015282417), (0.012, -0.0014157797, 0.0010286242), (0.015, -0.0007879933, 0.002425194), (0.015, -0.0008034442, 0.002472747), (0.015, -0.0021034442, 0.0015282417), (0.015, -0.0020629934, 0.0014988524)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -219,9 +219,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, -0.0018607391, 0.0013519061), (-0.006, -0.0020225425, 0.0014694631), (-0.006, -0.0025, 3.061617e-19), (-0.006, -0.0023, 2.8166878e-19), (-0.0055, -0.001618034, 0.0011755705), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.002, 2.4492937e-19)]
+            point3f[] points = [(-0.015, -0.0020629934, 0.0014988524), (-0.015, -0.0021034442, 0.0015282417), (-0.015, -0.0026, 3.1840816e-19), (-0.015, -0.00255, 3.1228493e-19), (-0.012, -0.0014157797, 0.0010286242), (-0.012, -0.0021034442, 0.0015282417), (-0.012, -0.0026, 3.1840816e-19), (-0.012, -0.00175, 2.1431319e-19)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -234,9 +234,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, -0.001618034, 0.0011755705), (-0.0055, -0.0020225425, 0.0014694631), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.002, 2.4492937e-19), (0.0055, -0.001618034, 0.0011755705), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.002, 2.4492937e-19)]
+            point3f[] points = [(-0.012, -0.0014157797, 0.0010286242), (-0.012, -0.0021034442, 0.0015282417), (-0.012, -0.0026, 3.1840816e-19), (-0.012, -0.00175, 2.1431319e-19), (0.012, -0.0014157797, 0.0010286242), (0.012, -0.0021034442, 0.0015282417), (0.012, -0.0026, 3.1840816e-19), (0.012, -0.00175, 2.1431319e-19)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -249,9 +249,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, -0.001618034, 0.0011755705), (0.0055, -0.0020225425, 0.0014694631), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.002, 2.4492937e-19), (0.006, -0.0018607391, 0.0013519061), (0.006, -0.0020225425, 0.0014694631), (0.006, -0.0025, 3.061617e-19), (0.006, -0.0023, 2.8166878e-19)]
+            point3f[] points = [(0.012, -0.0014157797, 0.0010286242), (0.012, -0.0021034442, 0.0015282417), (0.012, -0.0026, 3.1840816e-19), (0.012, -0.00175, 2.1431319e-19), (0.015, -0.0020629934, 0.0014988524), (0.015, -0.0021034442, 0.0015282417), (0.015, -0.0026, 3.1840816e-19), (0.015, -0.00255, 3.1228493e-19)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -264,9 +264,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, -0.0023, 2.8166878e-19), (-0.006, -0.0025, 3.061617e-19), (-0.006, -0.0020225425, -0.0014694631), (-0.006, -0.0018607391, -0.0013519061), (-0.0055, -0.002, 2.4492937e-19), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.001618034, -0.0011755705)]
+            point3f[] points = [(-0.015, -0.00255, 3.1228493e-19), (-0.015, -0.0026, 3.1840816e-19), (-0.015, -0.0021034442, -0.0015282417), (-0.015, -0.0020629934, -0.0014988524), (-0.012, -0.00175, 2.1431319e-19), (-0.012, -0.0026, 3.1840816e-19), (-0.012, -0.0021034442, -0.0015282417), (-0.012, -0.0014157797, -0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -279,9 +279,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, -0.002, 2.4492937e-19), (-0.0055, -0.0025, 3.061617e-19), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.001618034, -0.0011755705), (0.0055, -0.002, 2.4492937e-19), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.001618034, -0.0011755705)]
+            point3f[] points = [(-0.012, -0.00175, 2.1431319e-19), (-0.012, -0.0026, 3.1840816e-19), (-0.012, -0.0021034442, -0.0015282417), (-0.012, -0.0014157797, -0.0010286242), (0.012, -0.00175, 2.1431319e-19), (0.012, -0.0026, 3.1840816e-19), (0.012, -0.0021034442, -0.0015282417), (0.012, -0.0014157797, -0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -294,9 +294,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, -0.002, 2.4492937e-19), (0.0055, -0.0025, 3.061617e-19), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.001618034, -0.0011755705), (0.006, -0.0023, 2.8166878e-19), (0.006, -0.0025, 3.061617e-19), (0.006, -0.0020225425, -0.0014694631), (0.006, -0.0018607391, -0.0013519061)]
+            point3f[] points = [(0.012, -0.00175, 2.1431319e-19), (0.012, -0.0026, 3.1840816e-19), (0.012, -0.0021034442, -0.0015282417), (0.012, -0.0014157797, -0.0010286242), (0.015, -0.00255, 3.1228493e-19), (0.015, -0.0026, 3.1840816e-19), (0.015, -0.0021034442, -0.0015282417), (0.015, -0.0020629934, -0.0014988524)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -309,9 +309,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, -0.0018607391, -0.0013519061), (-0.006, -0.0020225425, -0.0014694631), (-0.006, -0.0007725425, -0.0023776414), (-0.006, -0.0007107391, -0.00218743), (-0.0055, -0.001618034, -0.0011755705), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, -0.000618034, -0.0019021131)]
+            point3f[] points = [(-0.015, -0.0020629934, -0.0014988524), (-0.015, -0.0021034442, -0.0015282417), (-0.015, -0.0008034442, -0.002472747), (-0.015, -0.0007879933, -0.002425194), (-0.012, -0.0014157797, -0.0010286242), (-0.012, -0.0021034442, -0.0015282417), (-0.012, -0.0008034442, -0.002472747), (-0.012, -0.0005407797, -0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -324,9 +324,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, -0.001618034, -0.0011755705), (-0.0055, -0.0020225425, -0.0014694631), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, -0.000618034, -0.0019021131), (0.0055, -0.001618034, -0.0011755705), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.0007725425, -0.0023776414), (0.0055, -0.000618034, -0.0019021131)]
+            point3f[] points = [(-0.012, -0.0014157797, -0.0010286242), (-0.012, -0.0021034442, -0.0015282417), (-0.012, -0.0008034442, -0.002472747), (-0.012, -0.0005407797, -0.0016643489), (0.012, -0.0014157797, -0.0010286242), (0.012, -0.0021034442, -0.0015282417), (0.012, -0.0008034442, -0.002472747), (0.012, -0.0005407797, -0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -339,9 +339,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, -0.001618034, -0.0011755705), (0.0055, -0.0020225425, -0.0014694631), (0.0055, -0.0007725425, -0.0023776414), (0.0055, -0.000618034, -0.0019021131), (0.006, -0.0018607391, -0.0013519061), (0.006, -0.0020225425, -0.0014694631), (0.006, -0.0007725425, -0.0023776414), (0.006, -0.0007107391, -0.00218743)]
+            point3f[] points = [(0.012, -0.0014157797, -0.0010286242), (0.012, -0.0021034442, -0.0015282417), (0.012, -0.0008034442, -0.002472747), (0.012, -0.0005407797, -0.0016643489), (0.015, -0.0020629934, -0.0014988524), (0.015, -0.0021034442, -0.0015282417), (0.015, -0.0008034442, -0.002472747), (0.015, -0.0007879933, -0.002425194)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -354,9 +354,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, -0.0007107391, -0.00218743), (-0.006, -0.0007725425, -0.0023776414), (-0.006, 0.0007725425, -0.0023776414), (-0.006, 0.0007107391, -0.00218743), (-0.0055, -0.000618034, -0.0019021131), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.000618034, -0.0019021131)]
+            point3f[] points = [(-0.015, -0.0007879933, -0.002425194), (-0.015, -0.0008034442, -0.002472747), (-0.015, 0.0008034442, -0.002472747), (-0.015, 0.0007879933, -0.002425194), (-0.012, -0.0005407797, -0.0016643489), (-0.012, -0.0008034442, -0.002472747), (-0.012, 0.0008034442, -0.002472747), (-0.012, 0.0005407797, -0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -369,9 +369,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, -0.000618034, -0.0019021131), (-0.0055, -0.0007725425, -0.0023776414), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.000618034, -0.0019021131), (0.0055, -0.000618034, -0.0019021131), (0.0055, -0.0007725425, -0.0023776414), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.000618034, -0.0019021131)]
+            point3f[] points = [(-0.012, -0.0005407797, -0.0016643489), (-0.012, -0.0008034442, -0.002472747), (-0.012, 0.0008034442, -0.002472747), (-0.012, 0.0005407797, -0.0016643489), (0.012, -0.0005407797, -0.0016643489), (0.012, -0.0008034442, -0.002472747), (0.012, 0.0008034442, -0.002472747), (0.012, 0.0005407797, -0.0016643489)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -384,9 +384,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, -0.000618034, -0.0019021131), (0.0055, -0.0007725425, -0.0023776414), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.000618034, -0.0019021131), (0.006, -0.0007107391, -0.00218743), (0.006, -0.0007725425, -0.0023776414), (0.006, 0.0007725425, -0.0023776414), (0.006, 0.0007107391, -0.00218743)]
+            point3f[] points = [(0.012, -0.0005407797, -0.0016643489), (0.012, -0.0008034442, -0.002472747), (0.012, 0.0008034442, -0.002472747), (0.012, 0.0005407797, -0.0016643489), (0.015, -0.0007879933, -0.002425194), (0.015, -0.0008034442, -0.002472747), (0.015, 0.0008034442, -0.002472747), (0.015, 0.0007879933, -0.002425194)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -399,9 +399,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, 0.0007107391, -0.00218743), (-0.006, 0.0007725425, -0.0023776414), (-0.006, 0.0020225425, -0.0014694631), (-0.006, 0.0018607391, -0.0013519061), (-0.0055, 0.000618034, -0.0019021131), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.001618034, -0.0011755705)]
+            point3f[] points = [(-0.015, 0.0007879933, -0.002425194), (-0.015, 0.0008034442, -0.002472747), (-0.015, 0.0021034442, -0.0015282417), (-0.015, 0.0020629934, -0.0014988524), (-0.012, 0.0005407797, -0.0016643489), (-0.012, 0.0008034442, -0.002472747), (-0.012, 0.0021034442, -0.0015282417), (-0.012, 0.0014157797, -0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -414,9 +414,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, 0.000618034, -0.0019021131), (-0.0055, 0.0007725425, -0.0023776414), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.001618034, -0.0011755705), (0.0055, 0.000618034, -0.0019021131), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.001618034, -0.0011755705)]
+            point3f[] points = [(-0.012, 0.0005407797, -0.0016643489), (-0.012, 0.0008034442, -0.002472747), (-0.012, 0.0021034442, -0.0015282417), (-0.012, 0.0014157797, -0.0010286242), (0.012, 0.0005407797, -0.0016643489), (0.012, 0.0008034442, -0.002472747), (0.012, 0.0021034442, -0.0015282417), (0.012, 0.0014157797, -0.0010286242)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -429,9 +429,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, 0.000618034, -0.0019021131), (0.0055, 0.0007725425, -0.0023776414), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.001618034, -0.0011755705), (0.006, 0.0007107391, -0.00218743), (0.006, 0.0007725425, -0.0023776414), (0.006, 0.0020225425, -0.0014694631), (0.006, 0.0018607391, -0.0013519061)]
+            point3f[] points = [(0.012, 0.0005407797, -0.0016643489), (0.012, 0.0008034442, -0.002472747), (0.012, 0.0021034442, -0.0015282417), (0.012, 0.0014157797, -0.0010286242), (0.015, 0.0007879933, -0.002425194), (0.015, 0.0008034442, -0.002472747), (0.015, 0.0021034442, -0.0015282417), (0.015, 0.0020629934, -0.0014988524)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -444,9 +444,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.006, 0.0018607391, -0.0013519061), (-0.006, 0.0020225425, -0.0014694631), (-0.006, 0.0025, -6.123234e-19), (-0.006, 0.0023, -5.6333755e-19), (-0.0055, 0.001618034, -0.0011755705), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.0025, -6.123234e-19), (-0.0055, 0.002, -4.8985874e-19)]
+            point3f[] points = [(-0.015, 0.0020629934, -0.0014988524), (-0.015, 0.0021034442, -0.0015282417), (-0.015, 0.0026, -6.368163e-19), (-0.015, 0.00255, -6.2456986e-19), (-0.012, 0.0014157797, -0.0010286242), (-0.012, 0.0021034442, -0.0015282417), (-0.012, 0.0026, -6.368163e-19), (-0.012, 0.00175, -4.2862638e-19)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -459,9 +459,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(-0.0055, 0.001618034, -0.0011755705), (-0.0055, 0.0020225425, -0.0014694631), (-0.0055, 0.0025, -6.123234e-19), (-0.0055, 0.002, -4.8985874e-19), (0.0055, 0.001618034, -0.0011755705), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.0025, -6.123234e-19), (0.0055, 0.002, -4.8985874e-19)]
+            point3f[] points = [(-0.012, 0.0014157797, -0.0010286242), (-0.012, 0.0021034442, -0.0015282417), (-0.012, 0.0026, -6.368163e-19), (-0.012, 0.00175, -4.2862638e-19), (0.012, 0.0014157797, -0.0010286242), (0.012, 0.0021034442, -0.0015282417), (0.012, 0.0026, -6.368163e-19), (0.012, 0.00175, -4.2862638e-19)]
             uniform token subdivisionScheme = "none"
         }
 
@@ -474,9 +474,9 @@ def Xform "spring"
             int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
             rel material:binding = </spring/Looks/steel>
             uniform token physics:approximation = "convexHull"
-            custom float physxCollision:contactOffset = 0.0003
+            custom float physxCollision:contactOffset = 0.0002
             custom float physxCollision:restOffset = 0
-            point3f[] points = [(0.0055, 0.001618034, -0.0011755705), (0.0055, 0.0020225425, -0.0014694631), (0.0055, 0.0025, -6.123234e-19), (0.0055, 0.002, -4.8985874e-19), (0.006, 0.0018607391, -0.0013519061), (0.006, 0.0020225425, -0.0014694631), (0.006, 0.0025, -6.123234e-19), (0.006, 0.0023, -5.6333755e-19)]
+            point3f[] points = [(0.012, 0.0014157797, -0.0010286242), (0.012, 0.0021034442, -0.0015282417), (0.012, 0.0026, -6.368163e-19), (0.012, 0.00175, -4.2862638e-19), (0.015, 0.0020629934, -0.0014988524), (0.015, 0.0021034442, -0.0015282417), (0.015, 0.0026, -6.368163e-19), (0.015, 0.00255, -6.2456986e-19)]
             uniform token subdivisionScheme = "none"
         }
     }

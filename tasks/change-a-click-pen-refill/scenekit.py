@@ -54,6 +54,9 @@ class UsdBody(Box):
     solver_iters: int = 16
     torsional_patch: float | None = None  # m, for bodies held in a pinch (lets the pads resist twisting)
     fix_root: bool = False  # an articulation fixed to the world where it is spawned (a tap on its post, a hose's clamp)
+    max_speed: float | None = None  # m/s cap, for small thin parts that would otherwise pass through walls when dropped
+    no_sleep: bool = False  # never put to sleep (small light parts sliding slowly down a bore)
+    angular_damping: float | None = None  # damps turning (a part whose real latch or fit holds it from spinning)
 
     def _check(self) -> None:
         if not (HERE / self.usd).is_file():
@@ -112,7 +115,13 @@ def _usd_object(spec: UsdBody):
             solver_position_iteration_count=spec.solver_iters, fix_root_link=spec.fix_root or None)
     else:
         addon["rigid_props"] = sim_utils.RigidBodyPropertiesCfg(solver_position_iteration_count=spec.solver_iters,
-                                                                kinematic_enabled=spec.mass is None)
+                                                                kinematic_enabled=spec.mass is None,
+                                                                max_linear_velocity=spec.max_speed,
+                                                                angular_damping=spec.angular_damping,
+                                                                # small light parts must never fall asleep part-way
+                                                                # down a bore
+                                                                sleep_threshold=0.0 if spec.no_sleep else None,
+                                                                stabilization_threshold=0.0 if spec.no_sleep else None)
         if spec.torsional_patch:
             addon["collision_props"] = sim_utils.CollisionPropertiesCfg(
                 torsional_patch_radius=spec.torsional_patch, min_torsional_patch_radius=0.8 * spec.torsional_patch)

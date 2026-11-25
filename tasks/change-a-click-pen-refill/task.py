@@ -1,6 +1,7 @@
-"""Change a click pen's refill. A desk pen stand holds the pen's parts: the new refill standing point-up, the front
-barrel standing nose-up and the back half standing open end up; the refill's spring stands on end on the table. The
-spring goes onto the refill's front, the front barrel over both, and the front barrel into the back half.
+"""Change a click pen's refill. The pen is a one-piece-barrel click ballpoint taken apart: its clear barrel stands
+nose-down in a desk pen stand, with the clicker unit and a new refill standing beside it; the pen's spring has fallen
+out and stands on end on the table. The spring goes back into the barrel's nose, the new refill point-first into the
+barrel through the spring, and the clicker into the back end, its hook toward the clip, where it latches.
 
 Run it:  inspect-robots run --embodiment yam_arena -E task=task.py -E object_jitter=0 -E control_hz=20 \\
          --scorer task_score ...
@@ -21,13 +22,16 @@ import geometry as g  # noqa: E402
 
 SCENE = "station"
 SCORE_OVER = "end"
+# success() must hold for this long before the trial ends with success. yam_arena's embodiment enforces it: it counts
+# the consecutive control steps on which success() is true and ends the trial only once they reach SUCCESS_HOLD_S
+# (yam_arena/inspect_embodiment.py, the task-file scorer). score() itself reports the state at each moment.
 SUCCESS_HOLD_S = 1.0
-INSTRUCTION = ("Put the new refill in the pen: the spring onto its tip, the front barrel over them, then push the "
-               "front barrel into the back half.")
+INSTRUCTION = ("Put the new refill in the pen: the spring into the barrel's nose, the refill in point-first through "
+               "it, then push the clicker in until it latches, its hook toward the clip.")
 
 TOP = g.TOP
 _S = math.sqrt(0.5)
-UP, DOWN = (0.0, -_S, 0.0, _S), (0.0, _S, 0.0, _S)      # the part's own x axis pointing up / down
+UP = (0.0, -_S, 0.0, _S)      # the part's own x axis pointing up (its y axis stays the world's y)
 
 
 def _f(v):
@@ -40,24 +44,26 @@ def _socket(name):
 
 FLOOR = TOP + g.SLAB_T + 0.0005
 HOLDER = UsdBody("holder", usd="assets/holder.usda", pos=_f((*g.HOLDER_AT, TOP)), rot_xyzw=UP,
-                 size=(0.034, 0.11, 0.03), mass=None, friction=(0.5, 0.4))
-# the refill's frame: origin at its point, x toward its back end (pointing down while it stands point-up)
-REFILL = UsdBody("refill", usd="assets/refill.usda", pos=_f((*_socket("refill"), FLOOR + g.REFILL_L)), rot_xyzw=DOWN,
-                 size=(g.REFILL_L, 0.005, 0.005), mass=g.REFILL_MASS, friction=(0.25, 0.2), friction_min=True,
-                 solver_iters=32, torsional_patch=0.004)
+                 size=(g.SLAB_T + 0.03, g.BASE_Y, g.BASE_X), mass=None, friction=(0.5, 0.4))
+# the barrel's frame: origin at the nose tip, x toward its open back end; the clip on its +y side (the robot's left)
+# The barrel is held fixed by the stand (mass=None: kinematic), as a snug hole or putty holds it in a real trial.
+BARREL = UsdBody("barrel", usd="assets/barrel.usda", pos=_f((*_socket("barrel"), FLOOR)), rot_xyzw=UP,
+                 size=(g.BARREL_L, 0.01, 0.01), mass=None, friction=(0.08, 0.05), friction_min=True, solver_iters=32,
+                 torsional_patch=0.004, no_sleep=True)
+# the refill's frame: origin at its point, x toward its back end (up while it stands point-down)
+REFILL = UsdBody("refill", usd="assets/refill.usda", pos=_f((*_socket("refill"), FLOOR)), rot_xyzw=UP,
+                 size=(g.REFILL_L, 0.003, 0.003), mass=g.REFILL_MASS, friction=(0.6, 0.5), solver_iters=32,
+                 torsional_patch=0.004, no_sleep=True, max_speed=0.4)
+# the clicker's frame: origin at its lower end, x toward the button; its hook on its +y side
+# Its turning is damped (angular_damping) in place of the real hook's latch, which holds it once it is in.
+CLICKER = UsdBody("clicker", usd="assets/clicker.usda", pos=_f((*_socket("clicker"), FLOOR)), rot_xyzw=UP,
+                  size=(g.CLICKER_L, 0.0066, 0.0066), mass=g.CLICKER_MASS, friction=(0.4, 0.3), solver_iters=32,
+                  torsional_patch=0.003, no_sleep=True, angular_damping=20.0)
 SPRING = UsdBody("spring", usd="assets/spring.usda", pos=_f((*g.SPRING_XY, TOP + g.SPRING_L / 2 + 0.0005)),
-                 rot_xyzw=UP, size=(g.SPRING_L, 0.005, 0.005), mass=g.SPRING_MASS, friction=(0.6, 0.5),
-                 solver_iters=32, torsional_patch=0.002)
-# the front barrel's frame: origin at its nose tip, x toward its open end (pointing down while it stands nose-up)
-BARREL = UsdBody("barrel", usd="assets/barrel.usda", pos=_f((*_socket("barrel"), FLOOR + g.BARREL_L)), rot_xyzw=DOWN,
-                 size=(g.BARREL_L, 0.01, 0.01), mass=g.BARREL_MASS, friction=(0.6, 0.5), solver_iters=32,
-                 torsional_patch=0.004)
-# the back half's frame: origin at its closed (button) end, x toward its open end (pointing up)
-BACK = UsdBody("back", usd="assets/back.usda", pos=_f((*_socket("back"), FLOOR)), rot_xyzw=UP,
-               size=(g.BACK_L, 0.014, 0.014), mass=g.BACK_MASS, friction=(0.6, 0.5), solver_iters=32,
-               torsional_patch=0.004)
-OBJECTS = [HOLDER, REFILL, SPRING, BARREL, BACK]
-PARTS = ("refill", "spring", "barrel", "back")
+                 rot_xyzw=UP, size=(g.SPRING_L, 0.0042, 0.0042), mass=g.SPRING_MASS, friction=(0.6, 0.5), solver_iters=32,
+                 torsional_patch=0.003, no_sleep=True, max_speed=0.15)
+OBJECTS = [HOLDER, BARREL, REFILL, CLICKER, SPRING]
+PARTS = ("barrel", "refill", "clicker", "spring")
 
 _STATE: dict = {}
 
@@ -103,6 +109,12 @@ def tool_points(environment):
     return out
 
 
+def _deg(u, v):
+    import numpy as np
+
+    return math.degrees(math.acos(max(-1.0, min(1.0, float(np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v)))))))
+
+
 @on_reset
 def _start(environment=None) -> None:
     _STATE.clear()
@@ -112,47 +124,58 @@ def _start(environment=None) -> None:
 def _monitor(environment) -> None:
     import numpy as np
 
-    rp, rR = pose(environment, "refill")
-    sp, _ = pose(environment, "spring")
     bp, bR = pose(environment, "barrel")
-    kp, kR = pose(environment, "back")
-    s = rR.T @ (sp - rp)                       # the spring's centre in the refill's frame (x from the point back)
-    n = rR.T @ (bp - rp)                       # the front barrel's nose tip in the refill's frame
-    m = kR.T @ (bp + bR[:, 0] * g.BARREL_L - kp)   # the front barrel's open end in the back half's frame
-    e = kR.T @ (rp + rR[:, 0] * g.REFILL_L - kp)   # the refill's back end in the back half's frame
-    # every point of the pen's parts the hands must be clear of: each part's two ends
-    ends = [rp, rp + rR[:, 0] * g.REFILL_L, sp, bp, bp + bR[:, 0] * g.BARREL_L, kp, kp + kR[:, 0] * g.BACK_L]
+    rp, rR = pose(environment, "refill")
+    cp, cR = pose(environment, "clicker")
+    sp, _ = pose(environment, "spring")
+    sb = bR.T @ (sp - bp)                      # the spring's centre in the barrel's frame (x from the nose tip)
+    sr = rR.T @ (sp - rp)                      # ... and in the refill's frame (x from the point)
+    pb = bR.T @ (rp - bp)                      # the refill's point in the barrel's frame
+    lo = bR.T @ (cp - bp)                      # the clicker's lower end in the barrel's frame
+    top = bR.T @ (cp + cR[:, 0] * g.CLICKER_L - bp)   # its button's top
+    axis = bR[:, 0]
+    hook = cR[:, 1] - axis * (cR[:, 1] @ axis)          # the clicker's hook side and the barrel's clip side, square to
+    clip = bR[:, 1] - axis * (bR[:, 1] @ axis)          # the barrel's axis
+    ends = [bp, bp + bR[:, 0] * g.BARREL_L, rp, rp + rR[:, 0] * g.REFILL_L, cp, cp + cR[:, 0] * g.CLICKER_L, sp]
     clear = min(float(np.linalg.norm(t - q)) for t in tool_points(environment) for q in ends)
-    _STATE.update(spring_along=float(s[0]), spring_off=float(np.hypot(s[1], s[2])),
-                  nose_along=float(n[0]), nose_off=float(np.hypot(n[1], n[2])),
-                  barrel_axis=math.degrees(math.acos(max(-1.0, min(1.0, float(bR[:, 0] @ rR[:, 0]))))),
-                  mouth_along=float(m[0]), mouth_off=float(np.hypot(m[1], m[2])),
-                  back_axis=math.degrees(math.acos(max(-1.0, min(1.0, abs(float(kR[:, 0] @ bR[:, 0])))))),
-                  end_along=float(e[0]), end_off=float(np.hypot(e[1], e[2])), clear=clear,
-                  still=max(speed(environment, k) for k in PARTS) <= g.STILL)
+    _STATE.update(spring_x=float(sb[0]), spring_off=float(np.hypot(sb[1], sb[2])),
+                  spring_along=float(sr[0]), spring_on_off=float(np.hypot(sr[1], sr[2])),
+                  point_x=float(pb[0]), point_off=float(np.hypot(pb[1], pb[2])),
+                  refill_axis=_deg(rR[:, 0], axis),
+                  clicker_out=float(top[0] - g.BARREL_L), clicker_off=float(np.hypot(lo[1], lo[2])),
+                  clicker_axis=_deg(cR[:, 0], axis), hook_deg=_deg(hook, clip),
+                  clear=clear, still=max(speed(environment, k) for k in PARTS) <= g.STILL)
 
 
-def spring_on() -> bool:
-    """The spring is on the refill's front section: its centre within 1.2 mm of the refill's axis, between the point's
-    taper and the shoulder."""
+def spring_on_refill() -> bool:
+    """The spring round the refill's front: its centre within 1.2 mm of the refill's axis, between 12 mm ahead of the
+    point and 8 mm behind it (against the stop its centre is 7 mm behind the point)."""
     s = _STATE
-    return bool(s and s["spring_off"] < g.SPRING_OFF and g.POINT_L < s["spring_along"] < g.SHOULDER)
+    return bool(s and s["spring_on_off"] < g.SPRING_ON_OFF and -0.012 < s["spring_along"] < 0.008)
 
 
-def barrel_over() -> bool:
-    """The front barrel is over the refill: the refill's point within 1.5 mm of the barrel's axis, from 1 mm above to
-    8 mm below its nose tip, and the two in line within 6 degrees."""
+def spring_placed() -> bool:
+    """The spring back in place: in the barrel's nose (centre within 3.25 mm of its axis, within 5 cm of the nose tip)
+    or round the refill's front."""
     s = _STATE
-    return bool(s and s["nose_off"] < g.NOSE_OFF and -g.NOSE_BELOW < s["nose_along"] < g.NOSE_ABOVE
-                and s["barrel_axis"] < g.AXIS_DEG)
+    return bool(s and ((s["spring_off"] < g.SPRING_OFF and 0.0 < s["spring_x"] < g.SPRING_NOSE)
+                       or spring_on_refill()))
 
 
-def joined() -> bool:
-    """The front barrel is pushed into the back half: its open end within 1.5 mm of the sleeve's floor and of the back
-    half's axis, the two in line within 6 degrees, and the refill's back end inside the back half."""
+def refill_in() -> bool:
+    """The refill in the barrel point-first through the spring: its point within 1.5 mm of the barrel's axis, 8 to 30 mm
+    from the nose tip, in line within 6 degrees, and the spring round its front."""
     s = _STATE
-    return bool(s and abs(s["mouth_along"] - (g.BACK_L - g.SLEEVE_L)) < g.JOIN_GAP and s["mouth_off"] < g.JOIN_OFF
-                and s["back_axis"] < g.AXIS_DEG and 0.0 < s["end_along"] < g.BACK_L and s["end_off"] < g.BACK_RI)
+    return bool(s and s["point_off"] < g.POINT_OFF and g.POINT_RANGE[0] < s["point_x"] < g.POINT_RANGE[1]
+                and s["refill_axis"] < g.AXIS_DEG and spring_on_refill())
+
+
+def clicker_in() -> bool:
+    """The clicker latched in the back end: its button 6 to 10 mm out of the barrel, its lower end within 1.5 mm of the
+    barrel's axis, in line within 6 degrees and its hook within 20 degrees of the clip's side."""
+    s = _STATE
+    return bool(s and g.CLICKER_RANGE[0] < s["clicker_out"] < g.CLICKER_RANGE[1] and s["clicker_off"] < g.CLICKER_OFF
+                and s["clicker_axis"] < g.AXIS_DEG and s["hook_deg"] < g.HOOK_DEG)
 
 
 def done() -> bool:
@@ -165,13 +188,13 @@ def success(objects) -> bool:
 
 
 def score(objects) -> float:
-    """0 unless the spring is on the refill's front section. Then 0.25, plus 0.25 with the front barrel over the refill
-    (its point in the nose), plus 0.25 with the front barrel pushed into the back half, plus 0.25 (1.0, success) with
-    both hands 4 cm clear of every part and nothing moving."""
-    if not spring_on():
+    """0 unless the spring is back in place (in the barrel's nose or round the refill's front). Then 0.25, plus 0.25
+    with the refill in point-first through the spring, plus 0.25 with the clicker latched, plus 0.25 (1.0, success)
+    with both hands 4 cm clear of every part and nothing moving. The trial ends once 1.0 has held for SUCCESS_HOLD_S."""
+    if not spring_placed():
         return 0.0
-    if not barrel_over():
+    if not refill_in():
         return 0.25
-    if not joined():
+    if not clicker_in():
         return 0.5
     return 1.0 if done() else 0.75

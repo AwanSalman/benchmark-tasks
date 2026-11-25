@@ -1,7 +1,10 @@
 """Write the scene's USD assets from geometry.py (needs pxr).
 
-- assets/refill.usda: the new refill, one rigid body: point cone, front section, ink tube.
-- assets/spring.usda: the pen's spring, one rigid body: an open coil modelled as a ring of slats round its bore.
+- assets/refill.usda: the new refill: brass point, 3 mm ink tube, the spring stop 22 mm from the point.
+- assets/spring.usda: the pen's spring: an open coil modelled as a ring of slats round its bore.
+- assets/barrel.usda: the pen's one-piece clear barrel: nose cone, bore, pocket clip.
+- assets/clicker.usda: the clicker unit: button cap, guide rings, hollow body, click hook.
+- assets/holder.usda: the desk pen stand: a base slab and three tubes.
 """
 
 from __future__ import annotations
@@ -79,16 +82,28 @@ def frustum(stage, path, x0, x1, r0, r1, mat, n=16):
     return mesh(stage, path, pts, faces, mat)
 
 
+BOX = [[0, 3, 2, 1], [4, 5, 6, 7], [0, 1, 5, 4], [1, 2, 6, 5], [2, 3, 7, 6], [3, 0, 4, 7]]
+
+
+def box(stage, path, x0, x1, y0, y1, z0, z1, mat):
+    pts = [(x, y, z) for x in (x0, x1) for y, z in ((y0, z0), (y1, z0), (y1, z1), (y0, z1))]
+    return mesh(stage, path, pts, BOX, mat)
+
+
 def build_refill():
     stage = stage_for("refill")
     brass = material(stage, "/refill/Looks/brass", (0.80, 0.65, 0.30), 0.3, 0.9)
-    tube = material(stage, "/refill/Looks/tube", (0.85, 0.86, 0.88), 0.3, 0.6)
+    ink = material(stage, "/refill/Looks/ink", (0.08, 0.10, 0.16), 0.35, 0.0)
+    clear = material(stage, "/refill/Looks/clear", (0.80, 0.78, 0.90), 0.3, 0.0)
     body(stage, "/refill/body", g.REFILL_MASS)
     b = "/refill/body"
-    frustum(stage, f"{b}/point", 0.0, g.POINT_L, g.POINT_R0, g.FRONT_R, brass)
-    frustum(stage, f"{b}/front", g.POINT_L, g.SHOULDER, g.FRONT_R, g.FRONT_R, brass)
-    frustum(stage, f"{b}/shoulder", g.SHOULDER, g.SHOULDER + 0.001, g.FRONT_R, g.TUBE_R, tube)
-    frustum(stage, f"{b}/tube", g.SHOULDER + 0.001, g.REFILL_L, g.TUBE_R, g.TUBE_R, tube)
+    frustum(stage, f"{b}/point", 0.0, g.POINT_TAPER, g.POINT_R0, g.BRASS_R, brass)
+    frustum(stage, f"{b}/brass", g.POINT_TAPER, g.POINT_L, g.BRASS_R, g.BRASS_R, brass)
+    frustum(stage, f"{b}/tube", g.POINT_L, g.REFILL_L - 0.015, g.TUBE_R, g.TUBE_R, ink)
+    frustum(stage, f"{b}/end", g.REFILL_L - 0.015, g.REFILL_L - g.END_TAPER, g.TUBE_R, g.TUBE_R, clear)
+    # the end plug, rounded off: it finds the clicker's funnel
+    frustum(stage, f"{b}/plug", g.REFILL_L - g.END_TAPER, g.REFILL_L, g.TUBE_R, g.END_R, clear)
+    frustum(stage, f"{b}/stop", g.STOP_AT, g.STOP_AT + g.STOP_L, g.STOP_R, g.STOP_R, ink, n=12)
     stage.GetRootLayer().Save()
 
 
@@ -98,19 +113,20 @@ def build_spring():
     body(stage, "/spring/body", g.SPRING_MASS)
     n, ri, ro, L = g.SPRING_SEGMENTS, g.SPRING_RI, g.SPRING_RO, g.SPRING_L
     lr, ll = g.SPRING_LEAD
-    faces = [[0, 3, 2, 1], [4, 5, 6, 7], [0, 1, 5, 4], [1, 2, 6, 5], [2, 3, 7, 6], [3, 0, 4, 7]]
-    # each slat in three lengths: a lead-in at each end (the bore opening out) and the middle
     for k in range(n):
         t0, t1 = 2 * math.pi * k / n, 2 * math.pi * (k + 1) / n
 
-        def ring(r_in):
-            return [(r_in * math.cos(t0), r_in * math.sin(t0)), (ro * math.cos(t0), ro * math.sin(t0)),
-                    (ro * math.cos(t1), ro * math.sin(t1)), (r_in * math.cos(t1), r_in * math.sin(t1))]
+        def ring(r_in, r_out):
+            return [(r_in * math.cos(t0), r_in * math.sin(t0)), (r_out * math.cos(t0), r_out * math.sin(t0)),
+                    (r_out * math.cos(t1), r_out * math.sin(t1)), (r_in * math.cos(t1), r_in * math.sin(t1))]
 
-        for j, (x0, r0, x1, r1) in enumerate(((-L / 2, ri + lr, -L / 2 + ll, ri), (-L / 2 + ll, ri, L / 2 - ll, ri),
-                                              (L / 2 - ll, ri, L / 2, ri + lr))):
-            pts = [(x0, y, z) for y, z in ring(r0)] + [(x1, y, z) for y, z in ring(r1)]
-            mesh(stage, f"/spring/body/slat{k}_{j}", pts, faces, steel, offset=0.0003)
+        # each slat in three lengths: the end turns (the bore opening out and the outside rounding in) and the middle
+        rc = ro - g.SPRING_ROUND
+        for j, (x0, r0, o0, x1, r1, o1) in enumerate(((-L / 2, ri + lr, rc, -L / 2 + ll, ri, ro),
+                                                      (-L / 2 + ll, ri, ro, L / 2 - ll, ri, ro),
+                                                      (L / 2 - ll, ri, ro, L / 2, ri + lr, rc))):
+            pts = [(x0, y, z) for y, z in ring(r0, o0)] + [(x1, y, z) for y, z in ring(r1, o1)]
+            mesh(stage, f"/spring/body/slat{k}_{j}", pts, BOX, steel, offset=0.0002)
     stage.GetRootLayer().Save()
 
 
@@ -129,63 +145,83 @@ def shell(stage, path, x0, x1, ri0, ri1, ro0, ro1, mat, n):
         mesh(stage, f"{path}_{k}", pts, faces, mat)
 
 
+
+def barrel_ro(x):
+    """The barrel's outside radius at x from the nose tip."""
+    if x <= g.NOSE_L:
+        return g.NOSE_TIP_RO + (g.FRONT_RO - g.NOSE_TIP_RO) * x / g.NOSE_L
+    if x <= g.BACK_START:
+        return g.FRONT_RO
+    return g.FRONT_RO + (g.BACK_RO - g.FRONT_RO) * (x - g.BACK_START) / (g.BARREL_L - g.BACK_START)
+
+
 def build_barrel():
     stage = stage_for("barrel")
-    blue = material(stage, "/barrel/Looks/blue", (0.10, 0.22, 0.55), 0.4, 0.0)
+    clear = material(stage, "/barrel/Looks/clear", (0.35, 0.70, 0.95), 0.2, 0.0)
+    clip = material(stage, "/barrel/Looks/clip", (0.20, 0.50, 0.90), 0.3, 0.0)
     body(stage, "/barrel/body", g.BARREL_MASS)
     b, n = "/barrel/body", g.BARREL_SEGMENTS
-    nose_ro = g.NOSE_TIP_RO + (g.BARREL_RO - g.NOSE_TIP_RO) * 0.6
-    x0, x1 = 0.0, g.NOSE_L
-    shell(stage, f"{b}/nose", x0, x1, g.NOSE_RI, g.NOSE_RI, g.NOSE_TIP_RO, nose_ro, blue, n)
-    x0, x1 = x1, x1 + g.SEAT_STEP
-    shell(stage, f"{b}/step", x0, x1, g.NOSE_RI, g.SEAT_RI, nose_ro, nose_ro, blue, n)
-    x0, x1 = x1, x1 + g.SEAT_L
-    shell(stage, f"{b}/seat", x0, x1, g.SEAT_RI, g.SEAT_RI, nose_ro, g.BARREL_RO, blue, n)
-    x0, x1 = x1, x1 + g.FUNNEL_L
-    shell(stage, f"{b}/funnel", x0, x1, g.SEAT_RI, g.BARREL_RI, g.BARREL_RO, g.BARREL_RO, blue, n)
-    shell(stage, f"{b}/bore", x1, g.BARREL_L - g.MOUTH_CH, g.BARREL_RI, g.BARREL_RI, g.BARREL_RO, g.BARREL_RO, blue, n)
-    shell(stage, f"{b}/mouth", g.BARREL_L - g.MOUTH_CH, g.BARREL_L, g.BARREL_RI, g.BARREL_RI + g.MOUTH_CH,
-          g.BARREL_RO, g.BARREL_RO, blue, n)
+    shell(stage, f"{b}/nose", 0.0, g.NOSE_L, g.NOSE_HOLE_R, g.FRONT_RI, g.NOSE_TIP_RO, g.FRONT_RO, clear, n)
+    # the nose's solid end: a plug filling the cone's bore up to NOSE_SOLID (the 1 mm point hole is left out: nothing
+    # goes through it here)
+    r_in = g.NOSE_HOLE_R + (g.FRONT_RI - g.NOSE_HOLE_R) * g.NOSE_SOLID / g.NOSE_L
+    frustum(stage, f"{b}/nose_plug", 0.0, g.NOSE_SOLID, g.NOSE_HOLE_R + 0.0002, r_in + 0.0002, clear, n)
+    shell(stage, f"{b}/front", g.NOSE_L, g.BACK_START, g.FRONT_RI, g.FRONT_RI, g.FRONT_RO, g.FRONT_RO, clear, n)
+    x0, x1 = g.BACK_START, g.WIDE_AT
+    shell(stage, f"{b}/middle", x0, x1, g.FRONT_RI, g.FRONT_RI, barrel_ro(x0), barrel_ro(x1), clear, n)
+    x0, x1 = x1, x1 + g.STEP_L
+    shell(stage, f"{b}/step", x0, x1, g.FRONT_RI, g.BACK_RI, barrel_ro(x0), barrel_ro(x1), clear, n)
+    x0, x1 = x1, g.BARREL_L - g.MOUTH_CH
+    if x1 - x0 > 1e-4:                                   # (no zero-length shell: its flat pieces cook badly)
+        shell(stage, f"{b}/back", x0, x1, g.BACK_RI, g.BACK_RI, barrel_ro(x0), barrel_ro(x1), clear, n)
+    shell(stage, f"{b}/mouth", x1, g.BARREL_L, g.BACK_RI, g.BACK_RI + g.MOUTH_CH, barrel_ro(x1), g.BACK_RO, clear, n)
+    # the pocket clip on the +y side, standing off the barrel except at its root by the back end
+    y0 = g.BACK_RO - 0.0002
+    box(stage, f"{b}/clip", g.CLIP_FROM, g.BARREL_L - 0.002, y0, y0 + g.CLIP_T, -g.CLIP_W / 2, g.CLIP_W / 2, clip)
     stage.GetRootLayer().Save()
 
 
-def build_back():
-    stage = stage_for("back")
-    blue = material(stage, "/back/Looks/blue", (0.10, 0.22, 0.55), 0.4, 0.0)
-    body(stage, "/back/body", g.BACK_MASS)
-    b = "/back/body"
-    frustum(stage, f"{b}/floor", 0.0, g.BACK_FLOOR, g.BACK_RO, g.BACK_RO, blue)
-    shell(stage, f"{b}/bore", g.BACK_FLOOR, g.BACK_L - g.SLEEVE_L, g.BACK_RI, g.BACK_RI, g.BACK_RO, g.BACK_RO, blue, 16)
-    shell(stage, f"{b}/sleeve", g.BACK_L - g.SLEEVE_L, g.BACK_L - 0.0015, g.SLEEVE_RI, g.SLEEVE_RI, g.BACK_RO, g.BACK_RO,
-          blue, 16)
-    shell(stage, f"{b}/chamfer", g.BACK_L - 0.0015, g.BACK_L, g.SLEEVE_RI, g.SLEEVE_RI + g.SLEEVE_CH, g.BACK_RO,
-          g.BACK_RO, blue, 16)
+def build_clicker():
+    stage = stage_for("clicker")
+    blue = material(stage, "/clicker/Looks/blue", (0.12, 0.25, 0.85), 0.4, 0.0)
+    body(stage, "/clicker/body", g.CLICKER_MASS)
+    b, n = "/clicker/body", 12
+    shell(stage, f"{b}/mouth", 0.0, g.MOUTH_L, g.MOUTH_R, g.HOLLOW_R, g.BODY_R, g.BODY_R, blue, n)
+    ring_lo = g.CLICKER_L - g.CAP_L - 0.010 - g.RING_L
+    shell(stage, f"{b}/body", g.MOUTH_L, ring_lo, g.HOLLOW_R, g.HOLLOW_R, g.BODY_R, g.BODY_R, blue, n)
+    shell(stage, f"{b}/ring_lo", ring_lo, ring_lo + g.RING_L, g.HOLLOW_R, g.HOLLOW_R, g.RING_R, g.RING_R, blue, n)
+    shell(stage, f"{b}/upper", ring_lo + g.RING_L, g.HOLLOW_L, g.HOLLOW_R, g.HOLLOW_R, g.BODY_R, g.BODY_R, blue, n)
+    top = g.CLICKER_L - g.CAP_L
+    frustum(stage, f"{b}/floor", g.HOLLOW_L, top - g.RING_L, g.BODY_R, g.BODY_R, blue, n)
+    frustum(stage, f"{b}/ring_hi", top - g.RING_L, top, g.RING_R, g.RING_R, blue, n)
+    frustum(stage, f"{b}/cap", top, g.CLICKER_L, g.CAP_R, g.CAP_R, blue, n)
+    box(stage, f"{b}/hook", g.HOOK_AT, g.HOOK_AT + g.HOOK_L, g.BODY_R - 0.0002, g.HOOK_R, -0.0006, 0.0006, blue)
     stage.GetRootLayer().Save()
 
 
 def build_holder():
-    """A desk pen stand: a base slab and three sockets, the refill's (7 mm bore), the front barrel's (12 mm) and the
-    back half's (16 mm). Its own frame: origin at the slab's underside, x up; sockets at y = +0.02 (refill), -0.02
-    (front barrel) and -0.06 (back half)."""
+    """The desk pen stand: a base slab and three tubes in a row along y (clicker, barrel, refill). Its own frame:
+    origin at the slab's underside centre, x up."""
     stage = stage_for("holder")
     grey = material(stage, "/holder/Looks/grey", (0.35, 0.35, 0.38), 0.6, 0.0)
     body(stage, "/holder/body", 0.2)
     b = "/holder/body"
-    pts = [(x, y, z) for x in (0.0, 0.004) for y, z in ((-0.075, -0.015), (0.035, -0.015), (0.035, 0.015), (-0.075, 0.015))]
-    mesh(stage, f"{b}/base", pts, [[0, 3, 2, 1], [4, 5, 6, 7], [0, 1, 5, 4], [1, 2, 6, 5], [2, 3, 7, 6], [3, 0, 4, 7]], grey)
-    for name, y, ri, ro in (("refill", 0.02, g.TUBE_R + 0.001, 0.007), ("barrel", -0.02, g.BARREL_RO + 0.001, 0.009),
-                            ("back", -0.06, g.BACK_RO + 0.001, 0.011)):
+    box(stage, f"{b}/base", 0.0, g.SLAB_T, -g.BASE_Y / 2, g.BASE_Y / 2, -g.BASE_X / 2, g.BASE_X / 2, grey)
+    for name, y in g.SOCKET_Y.items():
         xf = UsdGeom.Xform.Define(stage, f"{b}/{name}_socket")
         xf.AddTranslateOp().Set(Gf.Vec3d(0, y, 0))
-        shell(stage, f"{b}/{name}_socket/w", 0.004, 0.034, ri, ri, ro, ro, grey, 16)
+        shell(stage, f"{b}/{name}_socket/w", g.SLAB_T, g.SLAB_T + g.SOCKET_H[name], g.SOCKET_RI[name], g.SOCKET_RI[name],
+              g.SOCKET_RO[name], g.SOCKET_RO[name], grey, 16)
     stage.GetRootLayer().Save()
 
 
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
+    for old in OUT.glob("*.usda"):
+        old.unlink()
     build_holder()
-    build_back()
+    build_barrel()
+    build_clicker()
     build_refill()
     build_spring()
-    build_barrel()
     print("wrote", sorted(p.name for p in OUT.glob("*.usda")))
